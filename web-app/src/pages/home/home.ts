@@ -16,6 +16,7 @@ export class HomePage {
   public perPage: any;
   public rUser: any = false;
   public userId: any = 0;
+  public rPage: any = 'LoginPage';
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
@@ -74,8 +75,13 @@ export class HomePage {
 
   handlepostjob() {
     var self = this;
+    if (parseInt(self.userId) == 0) {
+      self.rPage = LoginPage;
+    } else {
+      self.rPage = JobsPage;
+    }
     try {
-      let modal = self.modalCtrl.create(LoginPage, {});
+      let modal = self.modalCtrl.create(self.rPage, {});
       modal.present();
       modal.onDidDismiss(data => {
         if (data) {

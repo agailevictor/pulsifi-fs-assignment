@@ -56,8 +56,8 @@ export class JobsPage {
 
   onFileSelected() {
     var self = this;
-    var d = $("#jd").val().toString().split('\\');
-    self.fileName = d[d.length - 1];
+    var elementvalue = $("#jd").val().toString().split('\\');
+    self.fileName = elementvalue[elementvalue.length - 1];
   }
 
   handlePostJob(formgroup) {
