@@ -1,6 +1,14 @@
 var db = require('../db/dbConnection');
 
 var Job = {
+    handleGetAllJobs(data, callback) {
+        try {
+            return db.query('CALL SP_List_All_Jobs(?)', [data], callback);
+        } catch (e) {
+            console.log("Error in handleGetAllJobs : " + e);
+        }
+
+    },
 
     handleCreateJob: function (data, callback) {
         try {

@@ -10,6 +10,9 @@ import { LoginPage } from '../../pages/login/login';
 })
 export class HomePage {
   public jobdata: any[];
+  public p = 1;
+  public maxPage: any;
+  public perPage: any;
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
@@ -29,10 +32,12 @@ export class HomePage {
       content: 'Please wait...'
     });
     loading.present();
-    self.jobsApi.handlelistalljobs()
+    self.jobsApi.handlelistalljobs(self.p)
       .then(resp => {
         loading.dismiss();
         self.jobdata = resp['data'];
+        self.maxPage = resp['total']
+        self.perPage = resp['per_page']
       });
   }
 
@@ -64,6 +69,12 @@ export class HomePage {
     } catch (e) {
       console.log("Exception in handlepostjob: " + e);
     }
+  }
+
+  pageChanged(data) {
+    var self = this;
+    self.p = data;
+    self.handlegetAllJobList();
   }
 
 }

@@ -33,7 +33,7 @@
               </ion-item>
               <ion-item>
                 <ion-label position="stacked"><b>Job Status</b></ion-label>
-                <ion-select>
+                <ion-select name="jType" [(ngModel)]="jobStatus">
                   <ion-option value="open">Open</ion-option>
                   <ion-option value="on-hold">On hold</ion-option>
                   <ion-option value="closed">Closed</ion-option>
@@ -67,8 +67,8 @@
 
         <ion-col col-sm4>
           <ion-buttons end>
-            <button ion-button>Post</button>
-            <button ion-button color="light">Cancel</button>
+            <button ion-button (click)="handlePostJob();">Post</button>
+            <button ion-button color="light" (click)="handleCancel();">Cancel</button>
           </ion-buttons>
         </ion-col>
       </ion-row>

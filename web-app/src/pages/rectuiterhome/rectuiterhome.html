@@ -22,7 +22,9 @@
     </ion-row>
   </ion-grid>
   <ion-row>
-    <ion-list *ngFor="let item of jobdata" class="card-width">
+    <ion-list
+      *ngFor="let item of jobdata | paginate: { itemsPerPage: perPage, currentPage: p, id : 'job_list', totalItems: maxPage}"
+      class="card-width">
       <ion-card class="rounded" (click)="handleviewdetails(item)">
         <ion-item>
           <ion-avatar item-start>
@@ -41,5 +43,12 @@
         </ion-item>
       </ion-card>
     </ion-list>
+  </ion-row>
+  <ion-row>
+    <div class="pagenation-right">
+      <pagination-controls id="job_list" (pageChange)="pageChanged($event)" directionLinks="true" responsive="true"
+        previousLabel="Previous" nextLabel="Next">
+      </pagination-controls>
+    </div>
   </ion-row>
 </ion-content>

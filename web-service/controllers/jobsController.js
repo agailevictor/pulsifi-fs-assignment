@@ -385,8 +385,29 @@ let joblist = [
 
 let jobs = {
     getAllJobs(req, res) {
-        res.status(200).json({ data: joblist });
+        if (req.query.page && req.query.page > 0) {
+            var QueryStringPage = parseInt(req.query.page);
+            jobServices.handleGetAllJobs(QueryStringPage, function (err, rows) {
+                if (err) {
+                    res.json(err);
+                }
+                else {
+                    var userlists = {
+                        "page": parseInt(req.query.page),
+                        "per_page": rows[1][0].per_page,
+                        "total": rows[1][0].total,
+                        "total_pages": rows[1][0].total_pages,
+                        "data": rows[0]
+                    }
+                }
+                res.json(userlists);
+            });
+
+        } else {
+            return res.status(400).send("Page Number Should be greater than Zero");
+        }
     },
+
     postJob(req, res) {
         if (
             req.body.job_title &&

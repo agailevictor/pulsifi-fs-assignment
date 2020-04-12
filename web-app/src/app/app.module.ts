@@ -13,6 +13,7 @@ import { RectuiterhomePage } from '../pages/rectuiterhome/rectuiterhome';
 import { JobsPage } from '../pages/jobs/jobs';
 import { ConfigProvider } from '../providers/config/config';
 import { JobsProvider } from '../providers/jobs/jobs';
+import { NgxPaginationModule } from "ngx-pagination";
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { JobsProvider } from '../providers/jobs/jobs';
   imports: [
     BrowserModule,
     HttpClientModule,
+    NgxPaginationModule,
     IonicModule.forRoot(MyApp)
   ],
   bootstrap: [IonicApp],

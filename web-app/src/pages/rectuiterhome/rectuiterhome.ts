@@ -11,6 +11,9 @@ import { JobsPage } from '../../pages/jobs/jobs';
 export class RectuiterhomePage {
 
   public jobdata: any[];
+  public p = 1;
+  public maxPage: any;
+  public perPage: any;
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
@@ -30,10 +33,13 @@ export class RectuiterhomePage {
       content: 'Please wait...'
     });
     loading.present();
-    self.jobsApi.handlelistalljobs()
+    self.jobsApi.handlelistalljobs(self.p)
       .then(resp => {
         loading.dismiss();
         self.jobdata = resp['data'];
+        self.jobdata = resp['data'];
+        self.maxPage = resp['total']
+        self.perPage = resp['per_page']
       });
   }
 
@@ -67,4 +73,9 @@ export class RectuiterhomePage {
     }
   }
 
+  pageChanged(data) {
+    var self = this;
+    self.p = data;
+    self.handlegetAllJobList();
+  }
 }
