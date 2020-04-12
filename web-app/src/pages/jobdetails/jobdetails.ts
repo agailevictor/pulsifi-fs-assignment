@@ -23,7 +23,7 @@ export class JobdetailsPage {
       this.jobDeatilsObject = this.navParams.get("item");
       this.jobTitle = this.jobDeatilsObject.job_title;
       this.jobLocation = this.jobDeatilsObject.job_location;
-      this.jobDate = this.jobDeatilsObject.posted_date;
+      this.jobDate = this.jobDeatilsObject.modified_at;
       this.jobStatus = this.jobDeatilsObject.job_status;
     }
   }

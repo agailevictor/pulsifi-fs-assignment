@@ -35,7 +35,7 @@
             <ion-icon name="ios-compass-outline"></ion-icon> {{item.job_location}}
           </p>
           <p>
-            <ion-icon name="ios-calendar-outline"></ion-icon> {{item.posted_date}}
+            <ion-icon name="ios-calendar-outline"></ion-icon> {{item.modified_at | date:'mediumDate'}}
           </p>
           <p>
             <ion-icon name="ios-information-circle-outline"></ion-icon> {{item.job_status}}
