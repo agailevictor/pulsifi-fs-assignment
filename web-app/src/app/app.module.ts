@@ -14,6 +14,7 @@ import { JobsPage } from '../pages/jobs/jobs';
 import { ConfigProvider } from '../providers/config/config';
 import { JobsProvider } from '../providers/jobs/jobs';
 import { NgxPaginationModule } from "ngx-pagination";
+import { LoginProvider } from '../providers/login/login';
 
 @NgModule({
   declarations: [
@@ -44,7 +45,8 @@ import { NgxPaginationModule } from "ngx-pagination";
     SplashScreen,
     { provide: ErrorHandler, useClass: IonicErrorHandler },
     ConfigProvider,
-    JobsProvider
+    JobsProvider,
+    LoginProvider
   ]
 })
 export class AppModule { }

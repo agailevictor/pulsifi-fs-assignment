@@ -13,6 +13,7 @@ export class HomePage {
   public p = 1;
   public maxPage: any;
   public perPage: any;
+  public rUser: any = false;
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
@@ -24,10 +25,14 @@ export class HomePage {
 
   ionViewDidLoad() {
     this.handlegetAllJobList();
+    let myItem = localStorage.getItem('isGuest');
+    this.handlechecksession(myItem);
   }
 
-  handlechecksession() {
-
+  handlechecksession(metaData) {
+    if (metaData == 'false') {
+      this.rUser = true;
+    }
   }
 
   handlegetAllJobList() {
@@ -78,6 +83,14 @@ export class HomePage {
   pageChanged(data) {
     var self = this;
     self.p = data;
+    self.handlegetAllJobList();
+  }
+
+  handlelogout() {
+    localStorage.clear();
+    var self = this;
+    self.rUser = false;
+    self.p = 1;
     self.handlegetAllJobList();
   }
 
