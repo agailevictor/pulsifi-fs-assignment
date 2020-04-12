@@ -33,7 +33,7 @@ export class RectuiterhomePage {
       content: 'Please wait...'
     });
     loading.present();
-    self.jobsApi.handlelistalljobs(self.p)
+    self.jobsApi.handlelistalljobs(self.p, 8)
       .then(resp => {
         loading.dismiss();
         self.jobdata = resp['data'];

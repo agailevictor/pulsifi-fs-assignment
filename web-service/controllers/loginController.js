@@ -7,7 +7,11 @@ let login = {
                     res.json(err);
                 }
                 else {
-                    return res.status(200).send(rows[0]);
+                    var data = {
+                        "status": 200,
+                        "result": rows[0]
+                    }
+                    return res.json(data);
                 }
 
             });

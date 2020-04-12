@@ -13,9 +13,9 @@ export class JobsProvider {
     this.apiUrl = configs.Api;
   }
 
-  handlelistalljobs(Query) {
+  handlelistalljobs(Query1, Query2) {
     return new Promise((resolve, reject) => {
-      this.http.get(this.apiUrl + 'listalljobs?page=' + Query)
+      this.http.get(this.apiUrl + 'listalljobs?page=' + Query1 + '&userId=' + Query2)
         .subscribe(res => {
           resolve(res);
         }, (err) => {

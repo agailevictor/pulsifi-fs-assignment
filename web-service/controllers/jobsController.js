@@ -1,9 +1,10 @@
 var jobServices = require('../services/jobsService');
 let jobs = {
     getAllJobs(req, res) {
-        if (req.query.page && req.query.page > 0) {
+        if (req.query.page && req.query.page > 0 && req.query.userId) {
             var QueryStringPage = parseInt(req.query.page);
-            jobServices.handleGetAllJobs(QueryStringPage, function (err, rows) {
+            var QueryStringUser = parseInt(req.query.userId)
+            jobServices.handleGetAllJobs(QueryStringPage, QueryStringUser, function (err, rows) {
                 if (err) {
                     res.json(err);
                 }

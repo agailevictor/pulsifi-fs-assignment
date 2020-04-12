@@ -10,7 +10,6 @@ import { LoginProvider } from '../../providers/login/login';
 export class LoginPage {
   public inputEmail: any;
   public inputPassword: any;
-  public isGuest: any;
   objrequest: any;
   constructor(
     public navCtrl: NavController,
@@ -36,11 +35,11 @@ export class LoginPage {
     self.loginProvider.handlelogin(self.objrequest)
       .then(data => {
         loading.dismiss();
-        if (data.hasOwnProperty('id')) {
-          localStorage.setItem('isGuest', 'false');
+        if (data['result'].length > 0) {
+          localStorage.setItem('userId', data['result'][0].id);
           self.navCtrl.setRoot(HomePage);
         } else {
-          localStorage.setItem('isGuest', 'true');
+          localStorage.setItem('userId', '0');
           const toast = self.toastCtrl.create({
             message: 'Inavlid Credentials',
             duration: 2000
@@ -50,7 +49,7 @@ export class LoginPage {
       })
       .catch(error => {
         loading.dismiss();
-        localStorage.setItem('isGuest', 'true');
+        localStorage.setItem('userId', '0');
         const toast = self.toastCtrl.create({
           message: error.error.error,
           duration: 2000

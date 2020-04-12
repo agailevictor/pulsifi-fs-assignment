@@ -9,7 +9,7 @@
     <ion-row>
       <ion-col>
         <h1 *ngIf="!rUser"> Vacancies </h1>
-        <h1 *ngIf="rUser"> Based on your profile </h1>
+        <h1 *ngIf="rUser"> Vacancies posted by you </h1>
       </ion-col>
       <ion-col></ion-col>
       <ion-col>
@@ -18,7 +18,7 @@
             <ion-icon name="ios-create-outline"></ion-icon>
             <p>Post a Job</p>
           </button>
-          <button *ngIf="rUser" ion-button icon-start (click)="handlelogout()">
+          <button *ngIf="rUser" ion-button icon-start (click)="handlelogout()" color="danger">
             <ion-icon name="md-exit"></ion-icon>
           </button>
         </div>

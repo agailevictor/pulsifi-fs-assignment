@@ -3,6 +3,7 @@ import { NavController, NavParams, LoadingController, ModalController } from 'io
 import { JobsProvider } from '../../providers/jobs/jobs';
 import { JobdetailsPage } from '../../pages/jobdetails/jobdetails';
 import { LoginPage } from '../../pages/login/login';
+import { JobsPage } from '../../pages/jobs/jobs';
 
 @Component({
   selector: 'page-home',
@@ -14,6 +15,7 @@ export class HomePage {
   public maxPage: any;
   public perPage: any;
   public rUser: any = false;
+  public userId: any = 0;
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
@@ -24,15 +26,20 @@ export class HomePage {
   }
 
   ionViewDidLoad() {
-    this.handlegetAllJobList();
-    let myItem = localStorage.getItem('isGuest');
+    let myItem = localStorage.getItem('userId');
     this.handlechecksession(myItem);
   }
 
   handlechecksession(metaData) {
-    if (metaData == 'false') {
+    console.log(metaData);
+    if (metaData && parseInt(metaData) != 0) {
       this.rUser = true;
+      this.userId = parseInt(metaData);
+    } else {
+      this.rUser = false;
+      this.userId = 0;
     }
+    this.handlegetAllJobList();
   }
 
   handlegetAllJobList() {
@@ -41,7 +48,7 @@ export class HomePage {
       content: 'Please wait...'
     });
     loading.present();
-    self.jobsApi.handlelistalljobs(self.p)
+    self.jobsApi.handlelistalljobs(self.p, self.userId)
       .then(resp => {
         loading.dismiss();
         self.jobdata = resp['data'];
@@ -90,6 +97,7 @@ export class HomePage {
     localStorage.clear();
     var self = this;
     self.rUser = false;
+    self.userId = 0;
     self.p = 1;
     self.handlegetAllJobList();
   }
