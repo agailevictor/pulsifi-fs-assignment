@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NavController, NavParams, LoadingController, ModalController } from 'ionic-angular';
 import { JobsProvider } from '../../providers/jobs/jobs';
 import { JobdetailsPage } from '../../pages/jobdetails/jobdetails';
+import { LoginPage } from '../../pages/login/login';
 
 @Component({
   selector: 'page-home',
@@ -36,7 +37,6 @@ export class HomePage {
   }
 
   handleviewdetails(item) {
-    console.log(item)
     var self = this;
     try {
       let modal = self.modalCtrl.create(JobdetailsPage, { "item": item }, { enableBackdropDismiss: false });
@@ -49,7 +49,21 @@ export class HomePage {
     } catch (e) {
       console.log("Exception in handleviewdetails: " + e);
     }
+  }
 
+  handlepostjob() {
+    var self = this;
+    try {
+      let modal = self.modalCtrl.create(LoginPage, {});
+      modal.present();
+      modal.onDidDismiss(data => {
+        if (data) {
+          self.handlegetAllJobList();
+        }
+      });
+    } catch (e) {
+      console.log("Exception in handlepostjob: " + e);
+    }
   }
 
 }

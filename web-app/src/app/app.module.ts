@@ -8,6 +8,9 @@ import { MyApp } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
 import { HomePage } from '../pages/home/home';
 import { JobdetailsPage } from '../pages/jobdetails/jobdetails'
+import { LoginPage } from '../pages/login/login';
+import { RectuiterhomePage } from '../pages/rectuiterhome/rectuiterhome';
+import { JobsPage } from '../pages/jobs/jobs';
 import { ConfigProvider } from '../providers/config/config';
 import { JobsProvider } from '../providers/jobs/jobs';
 
@@ -15,7 +18,10 @@ import { JobsProvider } from '../providers/jobs/jobs';
   declarations: [
     MyApp,
     HomePage,
-    JobdetailsPage
+    JobdetailsPage,
+    LoginPage,
+    RectuiterhomePage,
+    JobsPage
   ],
   imports: [
     BrowserModule,
@@ -26,7 +32,10 @@ import { JobsProvider } from '../providers/jobs/jobs';
   entryComponents: [
     MyApp,
     HomePage,
-    JobdetailsPage
+    JobdetailsPage,
+    LoginPage,
+    RectuiterhomePage,
+    JobsPage
   ],
   providers: [
     StatusBar,
