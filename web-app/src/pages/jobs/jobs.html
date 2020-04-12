@@ -41,9 +41,12 @@
                 </ion-select>
               </ion-item>
               <ion-item>
-                <b>Job Description</b>
-                <ion-icon style="cursor: pointer;" name="ios-cloud-upload" item-end (click)="test();"></ion-icon>
-                <input type="file" style="display: none;" accept="application/pdf" />
+                <b>Job Description </b>
+                <p item-end>{{ fileName }}</p>
+                <ion-icon style="cursor: pointer;" name="ios-cloud-upload" item-end (click)="onBrowseClick($event)">
+                </ion-icon>
+                <input type="file" style="display: none;" accept="application/pdf" id="jd"
+                  (change)="onFileSelected()" />
               </ion-item>
             </ion-list>
           </ion-grid>
