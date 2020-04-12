@@ -26,6 +26,10 @@ export class HomePage {
     this.handlegetAllJobList();
   }
 
+  handlechecksession() {
+
+  }
+
   handlegetAllJobList() {
     var self = this;
     let loading = self.loadingCtrl.create({

@@ -13,7 +13,7 @@
 </ion-header>
 
 <ion-content padding>
-  <form>
+  <form [formGroup]="formgroup" (ngSubmit)="handlePostJob(formgroup.value)">
     <ion-grid>
       <ion-row>
         <ion-col>
@@ -21,24 +21,37 @@
             <ion-list>
               <ion-item>
                 <ion-label position="stacked"><b>Job Title</b></ion-label>
-                <ion-input name="jobTitle" [(ngModel)]="jobTitle"></ion-input>
+                <!-- <ion-input name="jobTitle" [(ngModel)]="jobTitle"></ion-input> -->
+                <ion-input name="jobTitle" formControlName="jobTitle"></ion-input>
+              </ion-item>
+              <ion-item *ngIf="jobTitle.hasError('required') && jobTitle.touched">
+                <p class="alert"> * Job title is required</p>
               </ion-item>
               <ion-item>
                 <ion-label position="stacked"><b>Job Location</b></ion-label>
-                <ion-input name="jobLocation" [(ngModel)]="jobLocation"></ion-input>
+                <!-- <ion-input name="jobLocation" [(ngModel)]="jobLocation"></ion-input> -->
+                <ion-input name="jobLocation" formControlName="jobLocation"></ion-input>
               </ion-item>
-              <ion-item>
-                <ion-label position="stacked"><b>Date</b></ion-label>
-                <ion-input name="jobDate" [(ngModel)]="jobDate"></ion-input>
+              <ion-item *ngIf="jobLocation.hasError('required') && jobLocation.touched">
+                <p class="alert"> * Job location is required</p>
               </ion-item>
               <ion-item>
                 <ion-label position="stacked"><b>Job Status</b></ion-label>
-                <ion-select name="jType" [(ngModel)]="jobStatus">
+                <!-- <ion-select name="jType" [(ngModel)]="jobStatus">
+                  <ion-option value="open">Open</ion-option>
+                  <ion-option value="on-hold">On hold</ion-option>
+                  <ion-option value="closed">Closed</ion-option>
+                  <ion-option value="filled">Filled</ion-option>
+                </ion-select> -->
+                <ion-select formControlName="jobStatus">
                   <ion-option value="open">Open</ion-option>
                   <ion-option value="on-hold">On hold</ion-option>
                   <ion-option value="closed">Closed</ion-option>
                   <ion-option value="filled">Filled</ion-option>
                 </ion-select>
+              </ion-item>
+              <ion-item *ngIf="jobStatus.hasError('required') && jobStatus.touched">
+                <p class="alert"> * Job status is required</p>
               </ion-item>
               <ion-item>
                 <b>Job Description </b>
@@ -67,7 +80,8 @@
 
         <ion-col col-sm4>
           <ion-buttons end>
-            <button ion-button (click)="handlePostJob();">Post</button>
+            <!-- <button ion-button (click)="handlePostJob();">Post</button> -->
+            <button ion-button [disabled]="!formgroup.valid">Post</button>
             <button ion-button color="light" (click)="handleCancel();">Cancel</button>
           </ion-buttons>
         </ion-col>
