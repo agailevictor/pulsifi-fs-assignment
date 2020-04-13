@@ -3,8 +3,6 @@
     <ion-grid class="grid-header">
       <ion-row>
         <ion-col>
-          <!-- <ion-title *ngIf="!edit">Add New User</ion-title>
-          <ion-title *ngIf="edit">Update User Details</ion-title> -->
           <ion-title color="primary">Post New Job</ion-title>
         </ion-col>
       </ion-row>
@@ -21,7 +19,6 @@
             <ion-list>
               <ion-item>
                 <ion-label position="stacked"><b>Job Title</b></ion-label>
-                <!-- <ion-input name="jobTitle" [(ngModel)]="jobTitle"></ion-input> -->
                 <ion-input name="jobTitle" formControlName="jobTitle"></ion-input>
               </ion-item>
               <ion-item *ngIf="jobTitle.hasError('required') && jobTitle.touched">
@@ -29,7 +26,6 @@
               </ion-item>
               <ion-item>
                 <ion-label position="stacked"><b>Job Location</b></ion-label>
-                <!-- <ion-input name="jobLocation" [(ngModel)]="jobLocation"></ion-input> -->
                 <ion-input name="jobLocation" formControlName="jobLocation"></ion-input>
               </ion-item>
               <ion-item *ngIf="jobLocation.hasError('required') && jobLocation.touched">
@@ -37,12 +33,6 @@
               </ion-item>
               <ion-item>
                 <ion-label position="stacked"><b>Job Status</b></ion-label>
-                <!-- <ion-select name="jType" [(ngModel)]="jobStatus">
-                  <ion-option value="open">Open</ion-option>
-                  <ion-option value="on-hold">On hold</ion-option>
-                  <ion-option value="closed">Closed</ion-option>
-                  <ion-option value="filled">Filled</ion-option>
-                </ion-select> -->
                 <ion-select formControlName="jobStatus">
                   <ion-option value="open">Open</ion-option>
                   <ion-option value="on-hold">On hold</ion-option>
@@ -58,8 +48,11 @@
                 <p item-end>{{ fileName }}</p>
                 <ion-icon style="cursor: pointer;" name="ios-cloud-upload" item-end (click)="onBrowseClick($event)">
                 </ion-icon>
-                <input type="file" style="display: none;" accept="application/pdf" id="jd"
-                  (change)="onFileSelected()" />
+                <input type="file" style="display: none;" accept="application/pdf" id="jd" (change)="onFileSelected()"
+                  formControlName="jobDescription" />
+              </ion-item>
+              <ion-item *ngIf="jobDescription.hasError('required') && jobDescription.touched">
+                <p class="alert"> * Job description is required</p>
               </ion-item>
             </ion-list>
           </ion-grid>
@@ -80,7 +73,6 @@
 
         <ion-col col-sm4>
           <ion-buttons end>
-            <!-- <button ion-button (click)="handlePostJob();">Post</button> -->
             <button ion-button [disabled]="!formgroup.valid">Post</button>
             <button ion-button color="light" (click)="handleCancel();">Cancel</button>
           </ion-buttons>

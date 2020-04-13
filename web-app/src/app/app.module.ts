@@ -9,7 +9,6 @@ import { HttpClientModule } from '@angular/common/http';
 import { HomePage } from '../pages/home/home';
 import { JobdetailsPage } from '../pages/jobdetails/jobdetails'
 import { LoginPage } from '../pages/login/login';
-import { RectuiterhomePage } from '../pages/rectuiterhome/rectuiterhome';
 import { JobsPage } from '../pages/jobs/jobs';
 import { ConfigProvider } from '../providers/config/config';
 import { JobsProvider } from '../providers/jobs/jobs';
@@ -22,7 +21,6 @@ import { LoginProvider } from '../providers/login/login';
     HomePage,
     JobdetailsPage,
     LoginPage,
-    RectuiterhomePage,
     JobsPage
   ],
   imports: [
@@ -37,7 +35,6 @@ import { LoginProvider } from '../providers/login/login';
     HomePage,
     JobdetailsPage,
     LoginPage,
-    RectuiterhomePage,
     JobsPage
   ],
   providers: [

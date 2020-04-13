@@ -39,6 +39,6 @@ export class JobdetailsPage {
 
   handleDownload() {
     console.log(this.jdLink + this.jobDesc);
-    saveAs(this.jdLink + this.jobDesc);
+    saveAs(this.jdLink + this.jobDesc, this.jobDesc);
   }
 }

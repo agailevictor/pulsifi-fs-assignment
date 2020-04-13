@@ -24,7 +24,7 @@ export class LoginPage {
     public formbuilder: FormBuilder
   ) {
     this.formgroup = formbuilder.group({
-      inputEmail: ['', [Validators.required]],
+      inputEmail: ['', Validators.compose([Validators.maxLength(70), Validators.pattern('^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$'), Validators.required])],
       inputPassword: ['', [Validators.required]]
     });
 

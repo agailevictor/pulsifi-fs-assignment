@@ -33,12 +33,13 @@ let jobs = {
             req.body.job_location &&
             req.body.jd_file_name &&
             req.body.job_status &&
+            req.body.job_description &&
             req.body.created_by &&
             req.body.modified_by
         ) {
             var base64File = req.body.job_description;
             var decodedFile = new Buffer(base64File, 'base64');
-            fs.writeFile(config.upload_path + jd_file_name, decodedFile, function (err) {
+            fs.writeFile(config.upload_path + req.body.jd_file_name, decodedFile, function (err) {
                 if (!err) {
 
                     jobServices.handleCreateJob(req.body, function (err, rows) {

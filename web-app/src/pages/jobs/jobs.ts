@@ -14,6 +14,7 @@ export class JobsPage {
   jobTitle: AbstractControl;
   jobLocation: AbstractControl;
   jobStatus: AbstractControl;
+  jobDescription: AbstractControl;
 
   public fileName: string = '';
   // public jobTitle: any;
@@ -32,12 +33,14 @@ export class JobsPage {
     this.formgroup = formbuilder.group({
       jobTitle: ['', [Validators.required]],
       jobLocation: ['', [Validators.required]],
-      jobStatus: ['', [Validators.required]]
+      jobStatus: ['', [Validators.required]],
+      jobDescription: ['', [Validators.required]]
     });
 
     this.jobTitle = this.formgroup.controls['jobTitle'];
     this.jobLocation = this.formgroup.controls['jobLocation'];
     this.jobStatus = this.formgroup.controls['jobStatus'];
+    this.jobDescription = this.formgroup.controls['jobDescription'];
   }
 
   ionViewDidLoad() {
@@ -66,7 +69,7 @@ export class JobsPage {
       fileReader.onload = function () {
         // console.log('======== KB ====', Math.round((((fileReader.result as string).split(',')[1].length) * 3 / 4) / 1024))
         self.fileData = (fileReader.result as string).split(',')[1];
-        console.log('fileData :', self.fileData);
+        // console.log('fileData :', self.fileData);
       };
     }
   }
