@@ -1,5 +1,5 @@
 # Pulsifi Full Stack Assignment
-## Front-end
+## Scenario
 
 Create a web application where a recruiter can post a job and preview the job. A candidate then should be able to also view the job.
 The job should contain the following fields:
