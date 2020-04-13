@@ -9,10 +9,6 @@ The job should contain the following fields:
       - Date
       - Job Status
 
-## Back-end
-
-## Screenshots
-
 ## Tech/framework used
 <b>Built with</b>
 - [Ionic Framework](https://ionicframework.com/)
@@ -25,3 +21,10 @@ The job should contain the following fields:
 ## Use the following credentials
 - email : agaile@gmail.com
 - password : test@123
+
+## How to run application in local machine?
+- git clone repo
+- create db using the sql provided in the mysql folder
+- edit config files in both web-app and web-service
+- cd /web-service and npm install
+- cd web-app and npm install then ionic serve
