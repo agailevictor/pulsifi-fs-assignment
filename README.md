@@ -23,7 +23,7 @@ The job should contain the following fields
 - email : agaile@gmail.com
 - password : test@123
 
-## How to run application in local machine?
+## How to run the application in local machine?
 - Before proceeding make sure you have installed nodejs and Ionic locally.
 - git clone repo
 - create db using the sql provided in the mysql folder
