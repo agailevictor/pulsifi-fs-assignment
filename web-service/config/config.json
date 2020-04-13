@@ -1,8 +1,8 @@
 {
     "host": "localhost",
     "port": 3306,
-    "user": "mysql_dev",
-    "password": "dev@123",
+    "user": "username",
+    "password": "password",
     "database": "user_management",
     "upload_path": "/var/www/pulsifi/files/"
 }
