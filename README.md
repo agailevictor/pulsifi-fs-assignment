@@ -21,3 +21,7 @@ The job should contain the following fields:
 
 ## How to access application?
 -[Web App](http://35.232.186.61/)
+
+## Use the following credentials
+email : agaile@gmail.com
+password : test@123
