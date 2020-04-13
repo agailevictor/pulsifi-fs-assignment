@@ -23,6 +23,7 @@ The job should contain the following fields:
 - password : test@123
 
 ## How to run application in local machine?
+- Before proceeding make sure you have installed nodejs and Ionic locally.
 - git clone repo
 - create db using the sql provided in the mysql folder
 - edit config files in both web-app and web-service
