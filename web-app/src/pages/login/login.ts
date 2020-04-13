@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams, LoadingController, ToastController } from 'ionic-angular';
+import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/forms';
 import { HomePage } from '../../pages/home/home';
 import { LoginProvider } from '../../providers/login/login';
 
@@ -8,30 +9,41 @@ import { LoginProvider } from '../../providers/login/login';
   templateUrl: 'login.html',
 })
 export class LoginPage {
-  public inputEmail: any;
-  public inputPassword: any;
+  formgroup: FormGroup;
+  inputEmail: AbstractControl;
+  inputPassword: AbstractControl;
+  // public inputEmail: any;
+  // public inputPassword: any;
   objrequest: any;
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
     public loginProvider: LoginProvider,
     public loadingCtrl: LoadingController,
-    public toastCtrl: ToastController
+    public toastCtrl: ToastController,
+    public formbuilder: FormBuilder
   ) {
+    this.formgroup = formbuilder.group({
+      inputEmail: ['', [Validators.required]],
+      inputPassword: ['', [Validators.required]]
+    });
+
+    this.inputEmail = this.formgroup.controls['inputEmail'];
+    this.inputPassword = this.formgroup.controls['inputPassword'];
   }
 
   ionViewDidLoad() {
   }
 
-  handlelogin() {
+  handleLogin(formgroup) {
     var self = this;
     let loading = this.loadingCtrl.create({
       content: 'Please wait...'
     });
     loading.present();
     self.objrequest = {};
-    self.objrequest['email'] = self.inputEmail;
-    self.objrequest['password'] = self.inputPassword;
+    self.objrequest['email'] = formgroup.inputEmail;
+    self.objrequest['password'] = formgroup.inputPassword;
     self.loginProvider.handlelogin(self.objrequest)
       .then(data => {
         loading.dismiss();
