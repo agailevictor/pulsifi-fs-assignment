@@ -1,4 +1,5 @@
 var jobServices = require('../services/jobsService');
+var config = require('../config/config');
 var fs = require('fs');
 let jobs = {
     getAllJobs(req, res) {
@@ -37,7 +38,7 @@ let jobs = {
         ) {
             var base64File = req.body.job_description;
             var decodedFile = new Buffer(base64File, 'base64');
-            fs.writeFile('C:\\Punkz\\Workspace\\Test\\' + jd_file_name, decodedFile, function (err) {
+            fs.writeFile(config.upload_path + jd_file_name, decodedFile, function (err) {
                 if (!err) {
 
                     jobServices.handleCreateJob(req.body, function (err, rows) {

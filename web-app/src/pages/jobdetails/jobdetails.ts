@@ -12,6 +12,8 @@ export class JobdetailsPage {
   jobLocation: any;
   jobDate: any;
   jobStatus: any;
+  jobDesc: any;
+  jdLink: any = 'http://35.232.186.61/files/';
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
@@ -26,6 +28,7 @@ export class JobdetailsPage {
       this.jobLocation = this.jobDeatilsObject.job_location;
       this.jobDate = this.jobDeatilsObject.modified_at;
       this.jobStatus = this.jobDeatilsObject.job_status;
+      this.jobDesc = this.jobDeatilsObject.jd_file_name;
     }
   }
 
@@ -35,7 +38,7 @@ export class JobdetailsPage {
   }
 
   handleDownload() {
-    console.log('here');
-    saveAs("http://www.africau.edu/images/default/sample.pdf", "one.pdf");
+    console.log(this.jdLink + this.jobDesc);
+    saveAs(this.jdLink + this.jobDesc);
   }
 }

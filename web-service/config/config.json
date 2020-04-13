@@ -4,5 +4,5 @@
     "user": "mysql_dev",
     "password": "dev@123",
     "database": "user_management",
-    "upload_path": "C:\\Punkz\\Workspace\\Test\\"
+    "upload_path": "/var/www/pulsifi/files/"
 }
