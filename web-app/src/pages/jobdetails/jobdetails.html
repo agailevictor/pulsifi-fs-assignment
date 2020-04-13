@@ -35,6 +35,12 @@
                 <ion-label position="stacked"><b>Job Status</b></ion-label>
                 <ion-label position="stacked">{{jobStatus}}</ion-label>
               </ion-item>
+              <ion-item>
+                <b>Job Description </b>
+                <p item-end>{{ fileName }}</p>
+                <ion-icon style="cursor: pointer;" name="ios-cloud-download" item-end (click)="handleDownload();">
+                </ion-icon>
+              </ion-item>
             </ion-list>
           </ion-grid>
         </ion-col>

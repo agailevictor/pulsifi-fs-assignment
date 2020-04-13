@@ -20,6 +20,7 @@ export class JobsPage {
   // public jobLocation: any;
   // public jobStatus: any;
   public objrequest: any;
+  public fileData = null;
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
@@ -58,6 +59,16 @@ export class JobsPage {
     var self = this;
     var elementvalue = $("#jd").val().toString().split('\\');
     self.fileName = elementvalue[elementvalue.length - 1];
+    var fileList = ($("#jd")[0] as HTMLInputElement).files;
+    var fileReader = new FileReader();
+    if (fileReader && fileList && fileList.length) {
+      fileReader.readAsDataURL(fileList[0]);
+      fileReader.onload = function () {
+        // console.log('======== KB ====', Math.round((((fileReader.result as string).split(',')[1].length) * 3 / 4) / 1024))
+        self.fileData = (fileReader.result as string).split(',')[1];
+        console.log('fileData :', self.fileData);
+      };
+    }
   }
 
   handlePostJob(formgroup) {
@@ -71,8 +82,9 @@ export class JobsPage {
     self.objrequest['job_location'] = formgroup.jobLocation;
     self.objrequest['jd_file_name'] = self.fileName;
     self.objrequest['job_status'] = formgroup.jobStatus;
-    self.objrequest['created_by'] = 8;
-    self.objrequest['modified_by'] = 8;
+    self.objrequest['job_description'] = self.fileData;
+    self.objrequest['created_by'] = localStorage.getItem('userId');
+    self.objrequest['modified_by'] = localStorage.getItem('userId');
     self.jobsApi.handlecreateJob(self.objrequest)
       .then(data => {
         loading.dismiss();

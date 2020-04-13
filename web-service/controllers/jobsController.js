@@ -1,4 +1,5 @@
 var jobServices = require('../services/jobsService');
+var fs = require('fs');
 let jobs = {
     getAllJobs(req, res) {
         if (req.query.page && req.query.page > 0 && req.query.userId) {
@@ -34,14 +35,25 @@ let jobs = {
             req.body.created_by &&
             req.body.modified_by
         ) {
-            jobServices.handleCreateJob(req.body, function (err, rows) {
-                if (err) {
-                    res.json(err);
-                }
-                else {
-                    return res.status(200).send(rows[0]);
-                }
+            var base64File = req.body.job_description;
+            var decodedFile = new Buffer(base64File, 'base64');
+            fs.writeFile('C:\\Punkz\\Workspace\\Test\\' + jd_file_name, decodedFile, function (err) {
+                if (!err) {
 
+                    jobServices.handleCreateJob(req.body, function (err, rows) {
+                        if (err) {
+                            res.json(err);
+                        }
+                        else {
+                            return res.status(200).send(rows[0]);
+                        }
+
+                    });
+                } else {
+                    return res.send(400, {
+                        error: 'failed to write the image'
+                    });
+                }
             });
         } else {
             return res.status(400).send("Missing required fields");

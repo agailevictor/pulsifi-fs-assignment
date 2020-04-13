@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams, ViewController } from 'ionic-angular';
+import { saveAs } from 'file-saver';
 
 @Component({
   selector: 'page-jobdetails',
@@ -31,5 +32,10 @@ export class JobdetailsPage {
 
   handlecancel() {
     this.viewCtrl.dismiss("success");
+  }
+
+  handleDownload() {
+    console.log('here');
+    saveAs("http://www.africau.edu/images/default/sample.pdf", "one.pdf");
   }
 }
